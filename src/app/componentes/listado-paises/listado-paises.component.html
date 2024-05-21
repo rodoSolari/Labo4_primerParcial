@@ -1,0 +1,10 @@
+<div class="row row-cols-3">
+  <div *ngFor="let pais of paises" class="col">
+    <div class="card" (click)="seleccionarPais(pais.name.common)">
+      <img [src]="pais.flags.png"  alt="{{ pais.name.common }}">
+      <div class="card-body">
+        <h6 class="card-title">{{ pais.name.common }}</h6>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<body>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h2>Usuario: {{infoGithub?.login}}</h2>
+          <div class="col-md">
+            <img src={{infoGithub?.avatar_url}} alt="A view on mountains."class="fade-in-image">
+          </div>
+    </div>
+    <a href="{{infoGithub?.followers_url}}" class="btn-new" style="margin-right: 20px;">Seguidores</a>
+    <a href="{{infoGithub?.html_url}}" class="btn-new">Perfil de gitHub</a>
+  </div>
+
+</body>

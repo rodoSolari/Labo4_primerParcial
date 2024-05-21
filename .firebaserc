@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "primerparcial-a7f77"
+  },
+  "targets": {
+    "primerparcial-a7f77": {
+      "hosting": {
+        "primerparcial": [
+          "primerparcial-a7f77"
+        ]
+      }
+    }
+  }
+}
