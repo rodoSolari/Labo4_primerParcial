@@ -1,0 +1,20 @@
+<div class="row">
+  <div *ngFor="let pais of paises" class="col-md-3 mb-3" (click)="seleccionarPais(pais.name.common)" [class.selected]="pais.name.common === paisSeleccionado" style="cursor: pointer;">
+    <div class="card">
+      <img [src]="pais.flags.png" class="card-img-top img-fluid" alt="{{ pais.name.common }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ pais.name.common }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div class="row row-cols-3">
+  <div *ngFor="let pais of paises" class="col">
+    <div class="card" (click)="seleccionarPais(pais.name.common)">
+      <img [src]="pais.flags.png"  alt="{{ pais.name.common }}">
+      <div class="card-body">
+        <h6 class="card-title">{{ pais.name.common }}</h6>
+      </div>
+    </div>
+  </div>
+</div>-->

@@ -1,0 +1,7 @@
+<div *ngIf="helado">
+  <p>¿Estás seguro de que deseas eliminar el helado <strong>{{ helado.nombre }}</strong>?</p>
+  <button class="btn btn-danger w-100" (click)="borrarHelado()">Borrar</button>
+</div>
+<div *ngIf="!helado">
+  <p>No se ha seleccionado ningún helado para eliminar.</p>
+</div>

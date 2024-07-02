@@ -29,16 +29,6 @@ export class LoginComponent {
     this.usuario.email = this.email;
     this.usuario.clave = this.clave;
     this.service.login(this.email,this.clave).then((userCredential) => {
-      /*const date : Date = new Date();
-      this.service.subirLog(this.email,date.toLocaleString());*/
-     // console.log("usuario logueado correctamente " + userCredential.user?.uid);
-     /* const uid = userCredential.user?.uid;
-      if(uid){
-        this.service.obtenerDatosUsuario(uid).subscribe((userData: any) => {
-          console.log("Datos del usuario:", userData);
-          // Aquí puedes procesar los datos del usuario como desees
-        });
-      }*/
       this.router.navigate(['bienvenido']);
     })
     .catch((error) => {

@@ -1,31 +1,41 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" style="font-size: 30px;" aria-current="page" routerLink=''>Home</a>
+          <a class="nav-link active" style="font-size: 30px;" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item" *ngIf="usuariologeado">
+          <a class="nav-link" style="font-size: 30px;" routerLink="repartidores/listado-repartidores">Listado de Repartidores</a>
+        </li>
+        <li class="nav-item" *ngIf="usuariologeado">
+          <a class="nav-link" style="font-size: 30px;" routerLink="repartidores/alta-repartidor">Alta de Repartidor</a>
+        </li>
+        <li class="nav-item" *ngIf="tipoUsuarioLogueado === 'admin'">
+          <a class="nav-link" style="font-size: 30px;" routerLink="helados/lista-helados">Lista de Helados</a>
         </li>
       </ul>
-    </div>
-    <ul class="navbar-nav mb-12 mb-lg-0" *ngIf="this.userIsLogged() | async as usuariologeado; else Login">
-      <li class="nav-item">
-        <a class="nav-link active" style="font-size: 30px;padding: 0 15px;" aria-current="page" routerLink='repartidor/alta-repartidor'>Alta</a>
-      </li>
-      <li class="nav-item">
-        <h3 style="color: #9fc2bc; padding: 0 15px;">Hola {{this.usuariologeado.displayName}}!</h3>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-light" (click)="logout()">Log Out</button>
-      </li>
-    </ul>
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mb-12 mb-lg-0" *ngIf="getUser() | async as usuariologeado; else Login">
+        <!--<li class="nav-item">
+          <a class="nav-link active" style="font-size: 30px;padding: 0 15px;" aria-current="page" routerLink='repartidor/alta-repartidor'>Alta</a>
+        </li>-->
+        <li class="nav-item">
+          <h3 style="color: #9fc2bc; padding: 0 15px;">Hola {{usuariologeado.displayName}}!</h3>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-light" (click)="logout()">Log Out</button>
+        </li>
+      </ul>
       <ng-template #Login>
         <ul class="navbar-nav mb-12 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" style="font-size: 30px;" routerLink="login">Login</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: 30px;" routerLink="login">Login</a>
+          </li>
         </ul>
       </ng-template>
-    </ul>
+    </div>
   </div>
 </nav>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ApiService } from '../../servicios/api.service';
+import { ApiService } from '../../../servicios/api.service';
 
 @Component({
   selector: 'app-listado-paises',
@@ -8,17 +8,19 @@ import { ApiService } from '../../servicios/api.service';
 })
 export class ListadoPaisesComponent {
   paises: any[] = [];
-  @Output() paisSeleccionado = new EventEmitter<string>();
+  paisSeleccionado: string | null = null;
+  @Output() paisSeleccionadoChange = new EventEmitter<string>();
 
   constructor(private apiPaises : ApiService) { }
 
   ngOnInit(): void {
     this.apiPaises.devolverPaises().subscribe(paises => {
-      this.paises = paises.slice(0, 3);
+      this.paises = paises.filter(pais => pais.region === 'Africa' || pais.region === 'Europe').slice(0, 3);
     });
   }
 
   seleccionarPais(nombre: string): void {
-    this.paisSeleccionado.emit(nombre);
+    this.paisSeleccionado = nombre;
+    this.paisSeleccionadoChange.emit(nombre);
   }
 }

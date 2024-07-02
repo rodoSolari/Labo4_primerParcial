@@ -1,0 +1,19 @@
+
+<form [formGroup]="heladoForm" (ngSubmit)="modificarHelado()">
+  <div class="mb-3">
+    <label for="tipo" class="form-label">Tipo</label>
+    <select class="form-select" id="tipo" formControlName="tipo">
+      <option value="agua">Agua</option>
+      <option value="crema">Crema</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="precio" class="form-label">Precio</label>
+    <input type="number" class="form-control" id="precio" formControlName="precio">
+  </div>
+  <div class="mb-3">
+    <label for="peso" class="form-label">Peso (g)</label>
+    <input type="number" class="form-control" id="peso" formControlName="peso">
+  </div>
+  <button type="submit" class="btn btn-primary w-100" [disabled]="!heladoForm.valid">Modificar</button>
+</form>

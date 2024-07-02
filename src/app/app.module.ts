@@ -16,23 +16,24 @@ import { environment } from '../environments/environment.development';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RepartidorModule } from './componentes/repartidor/repartidor.module';
 import { AltaRepartidorComponent } from './componentes/repartidor/alta-repartidor/alta-repartidor.component';
-import { ListadoPaisesComponent } from './componentes/listado-paises/listado-paises.component';
+import { DetalleRepartidorComponent } from './componentes/repartidor/detalle-repartidor/detalle-repartidor.component';
+import { ListadoRepartidoresComponent } from './componentes/repartidor/listado-repartidores/listado-repartidores.component';
+import { DetallePaisComponent } from './componentes/paises/detalle-pais/detalle-pais.component';
+import { HeladosModule } from './componentes/helados/helados.module';
+import { PaisesModule } from './componentes/paises/paises.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     BienvenidoComponent,
-    LoginComponent,
-    AltaRepartidorComponent,
-    ListadoPaisesComponent
+    LoginComponent
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RepartidorModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp({"projectId":"primerparcial-a7f77","appId":"1:561923166655:web:5dc12704d6b0750215d10a","storageBucket":"primerparcial-a7f77.appspot.com","apiKey":"AIzaSyCIMeODoenRR5awyNFb6NsGOitHi4O400g","authDomain":"primerparcial-a7f77.firebaseapp.com","messagingSenderId":"561923166655"})),
     provideAuth(() => getAuth()),

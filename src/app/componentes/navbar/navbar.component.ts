@@ -6,6 +6,8 @@ import { AngularFirestore, AngularFirestoreDocument, DocumentData } from '@angul
 import { UserMetadata, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { Observable, switchMap } from 'rxjs';
 import { FirebaseApp } from '@angular/fire/app';
+import { AuthService } from '../../servicios/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,32 +16,28 @@ import { FirebaseApp } from '@angular/fire/app';
 })
 export class NavbarComponent {
 
-  tipoUsuarioLogueado : any;
-  usuariologeado : any;
+  tipoUsuarioLogueado: any;
+  usuariologeado: any;
 
-  constructor(public service : UsuarioService,private firestore: Firestore,private afAuth: AngularFireAuth) {
+  constructor(public authService: AuthService, private firestore : Firestore, private route: Router) {}
+
+  ngOnInit(): void {
     const auth = getAuth();
-    const col = collection(this.firestore, 'Usuarios');
-    // Obtener información del usuario logueado
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const usuarioLogueadoId = user.uid;
-        // Obtener datos de usuarios de Firestore
-        getDocs(col).then((snapshot: QuerySnapshot<any>) => {
-          snapshot.forEach(doc => {
-
-            const usuario = doc.data();
-            const usuarioId = usuario.id;
-
-            // Comparar ID del usuario logueado con el ID del usuario actual
-            if (usuarioId == usuarioLogueadoId) {
-             // console.log('Este es el usuario logueado:', usuario);
-              this.tipoUsuarioLogueado = usuario.tipoUsuario
+        this.usuariologeado = user;
+        const userDocRef = doc(this.firestore, `Usuarios/${user.uid}`);
+        getDoc(userDocRef).then(docSnapshot => {
+          if(docSnapshot.exists()){
+            const usuarioData = docSnapshot.data();
+            if(usuarioData) {
+              this.tipoUsuarioLogueado = usuarioData['tipoUsuario'];
               console.log("Tipo de usuario logueado: " + this.tipoUsuarioLogueado);
             }
-            this.tipoUsuarioLogueado = usuario.tipoUsuario;
-            return;
-          });
+          }else{
+              console.log('No se encontró el documento del usuario');
+          }
         }).catch(error => {
           console.error('Error al obtener usuarios:', error);
         });
@@ -47,21 +45,20 @@ export class NavbarComponent {
         console.log('No hay usuario logueado');
       }
     });
-
-
   }
 
-  ngOnInit(): void {
-
+  public getUser(): Observable<any> {
+    return this.authService.getUser();
   }
 
-  public userIsLogged(){
-    return this.service.userLogged();
-  }
-
-  logout(){
+  logout() {
     console.log("cerrando sesion..");
-    this.service.logout();
+    this.route.navigate(['/bienvenido']);
+    this.authService.logout().then(() => {
+      this.usuariologeado = null;
+      this.tipoUsuarioLogueado = null;
+    });
+
   }
 
 }

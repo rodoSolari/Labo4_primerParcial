@@ -1,0 +1,17 @@
+.card {
+  transition: transform 0.2s;
+  width: 100%;
+}
+
+.selected {
+  border: 3px solid #007bff;
+}
+
+
+.card img {
+  max-height: 100px;
+}
+
+.card.selected {
+  border: 3px solid #007bff;
+}

@@ -1,0 +1,74 @@
+<body>
+
+
+<div class="container py-4 bg-dark">
+  <header style="color: white;">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Nuestros Helados</h1>
+      <p class="fs-5 text-body-secondary">Explora nuestros deliciosos sabores de helados y elige tu favorito.</p>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="display-6 text-center mb-4" style="color: white;">Lista de Helados</h2>
+
+    <div class="table-responsive" style="color: white;">
+      <table class="table text-center" style="color: white;">
+        <thead>
+          <tr>
+            <th style="width: 34%;">Nombre</th>
+            <th style="width: 22%;">Tipo</th>
+            <th style="width: 22%;">Precio</th>
+            <th style="width: 22%;">Peso</th>
+          </tr>
+        </thead>
+        <tbody style="color: white;">
+          <tr *ngFor="let helado of helados" (click)="selectHelado(helado)" [class.selected]="esSeleccionado(helado)">
+            <th scope="row" class="text-start">{{ helado.nombre }}</th>
+            <td>{{ helado.tipo }}</td>
+            <td>{{ helado.precio | currency }}</td>
+            <td>{{ helado.peso }} g</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Crear Helado</h4>
+          </div>
+          <div class="card-body">
+            <app-crear-helado (heladoCreado)="agregarHelado($event)"></app-crear-helado>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Modificar Helado</h4>
+          </div>
+          <div class="card-body">
+            <app-modificar-helado [helado]="selectedHelado" (heladoModificado)="actualizarHelados()" [heladoSeleccionado]="heladoSeleccionado"></app-modificar-helado>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Borrar Helado</h4>
+          </div>
+          <div class="card-body">
+            <app-borrar-helado [helado]="selectedHelado" (heladoBorrado)="eliminarHelado()"></app-borrar-helado>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>

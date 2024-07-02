@@ -1,0 +1,13 @@
+<div>
+  <div *ngIf="paisData">
+    <img [src]="paisData.flags.png" alt="{{ paisData.name.common }}" class="img-fluid mb-6">
+    <p><strong>Nombre:</strong> {{ paisData.name.common }}</p>
+    <p><strong>Capital:</strong> {{ paisData.capital[0] }}</p>
+    <p><strong>Región:</strong> {{ paisData.region }}</p>
+    <p><strong>Subregión:</strong> {{ paisData.subregion }}</p>
+    <p><strong>Población:</strong> {{ paisData.population }} habitantes</p>
+  </div>
+  <ng-template #loading>
+    <p>Cargando...</p>
+  </ng-template>
+</div>

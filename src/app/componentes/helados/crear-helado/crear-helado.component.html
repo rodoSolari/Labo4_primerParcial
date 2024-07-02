@@ -1,0 +1,40 @@
+<body>
+
+  <div class="container">
+    <form [formGroup]="heladoForm" (ngSubmit)="crearHelado()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        <div *ngIf="heladoForm.get('nombre')?.invalid && heladoForm.get('nombre')?.touched" class="text-danger">
+          Nombre es requerido.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo</label>
+        <select class="form-select" id="tipo" formControlName="tipo">
+          <option value="agua">Agua</option>
+          <option value="crema">Crema</option>
+        </select>
+        <div *ngIf="heladoForm.get('tipo')?.invalid && heladoForm.get('tipo')?.touched" class="text-danger">
+          Tipo es requerido.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="precio" formControlName="precio">
+        <div *ngIf="heladoForm.get('precio')?.invalid && heladoForm.get('precio')?.touched" class="text-danger">
+          Precio es requerido y debe ser mayor que 0.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="peso" class="form-label">Peso (g)</label>
+        <input type="number" class="form-control" id="peso" formControlName="peso">
+        <div *ngIf="heladoForm.get('peso')?.invalid && heladoForm.get('peso')?.touched" class="text-danger">
+          Peso es requerido y debe estar entre 250 y 1000 gramos.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!heladoForm.valid">Crear Helado</button>
+    </form>
+  </div>
+
+</body>
