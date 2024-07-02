@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable, from, map, of, switchMap } from 'rxjs';
 
 @Injectable({
@@ -48,6 +48,28 @@ export class AuthService {
             }
           })
         );
+      })
+    );
+  }
+
+  crearUsuario(user: any, firstName: string, lastName: string) {
+    const userDocRef = doc(this.firestore, `Usuarios/${user.uid}`);
+    return from(setDoc(userDocRef, {
+      //uid: user.uid,
+      firstName: firstName,
+      lastName: lastName,
+      tipoUsuario: 'empleado' // Se añade aquí
+    }));
+  }
+
+  modificarUsuario(email: string) {
+    return this.user$.pipe(
+      switchMap(user => {
+        if (!user) {
+          return of(null);
+        }
+        const userDocRef = doc(this.firestore, `Usuarios/${user.uid}`);
+        return from(updateDoc(userDocRef, { email: email }));
       })
     );
   }

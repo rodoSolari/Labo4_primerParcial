@@ -23,7 +23,7 @@
           <a class="nav-link active" style="font-size: 30px;padding: 0 15px;" aria-current="page" routerLink='repartidor/alta-repartidor'>Alta</a>
         </li>-->
         <li class="nav-item">
-          <h3 style="color: #9fc2bc; padding: 0 15px;">Hola {{usuariologeado.displayName}}!</h3>
+          <h3 style="color: #9fc2bc; padding: 0 15px;">Hola {{usuariologeado.email}}!</h3>
         </li>
         <li class="nav-item">
           <button class="btn btn-light" (click)="logout()">Log Out</button>
@@ -33,6 +33,9 @@
         <ul class="navbar-nav mb-12 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" style="font-size: 30px;" routerLink="login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: 30px;" routerLink="registro">Registrarse</a>
           </li>
         </ul>
       </ng-template>

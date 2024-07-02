@@ -21,13 +21,17 @@ import { ListadoRepartidoresComponent } from './componentes/repartidor/listado-r
 import { DetallePaisComponent } from './componentes/paises/detalle-pais/detalle-pais.component';
 import { HeladosModule } from './componentes/helados/helados.module';
 import { PaisesModule } from './componentes/paises/paises.module';
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { TerminosYCondicionesComponent } from './componentes/terminos-y-condiciones/terminos-y-condiciones.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     BienvenidoComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent,
+    TerminosYCondicionesComponent
   ],
   imports: [
     ReactiveFormsModule,
